@@ -13,7 +13,7 @@ const Home = () => {
   if (!isAuth) {
     return (
       <div>
-        <SignUp />
+        <SignUp setIsAuth={setIsAuth} />
       </div>
     );
   }
