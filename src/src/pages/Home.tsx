@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import SignUp from "./SignUp";
+import Chat from "./Chat";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
@@ -21,7 +22,7 @@ const Home = () => {
   return (
     <div>
       {isRoom ? (
-        <div>Chat</div>
+        <Chat />
       ) : (
         <div>
           <input
