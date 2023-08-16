@@ -16,7 +16,12 @@ const SignUp = () => {
   return (
     <div>
       <p>Sign Up with Google</p>
-      <button onClick={signInWithGoogle}>Sign up</button>
+      <button
+        className="border-black border-2 rounded"
+        onClick={signInWithGoogle}
+      >
+        Sign up
+      </button>
     </div>
   );
 };
