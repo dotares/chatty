@@ -1,5 +1,11 @@
+import SignUp from "./SignUp";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <SignUp />
+    </div>
+  );
 };
 
 export default Home;
