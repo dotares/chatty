@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div>
       {isRoom ? (
-        <Chat />
+        <Chat isRoom={isRoom} />
       ) : (
         <div>
           <input
