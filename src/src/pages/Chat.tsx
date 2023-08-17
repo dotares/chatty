@@ -22,10 +22,10 @@ const Chat = (props) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="fixed bottom-0 w-full">
+      <form className="flex" onSubmit={handleSubmit}>
         <input
-          className="border-2 border-black"
+          className="border-2 w-full border-black"
           placeholder="Type your message here"
           onChange={(e) => setNewMessage(e.target.value)}
           value={newMessage}
