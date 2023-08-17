@@ -7,7 +7,7 @@ const cookies = new Cookies();
 
 const Home = () => {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
-  const [isRoom, setIsRoom] = useState(null);
+  const [room, setRoom] = useState(null);
 
   const roomInputRef = useRef(null);
 
@@ -21,8 +21,8 @@ const Home = () => {
 
   return (
     <div>
-      {isRoom ? (
-        <Chat isRoom={isRoom} />
+      {room ? (
+        <Chat room={room} />
       ) : (
         <div>
           <input
@@ -30,7 +30,7 @@ const Home = () => {
             type="text"
             ref={roomInputRef}
           />
-          <button onClick={() => setIsRoom(roomInputRef.current.value)}>
+          <button onClick={() => setRoom(roomInputRef.current.value)}>
             Enter chat
           </button>
         </div>

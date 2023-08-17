@@ -3,7 +3,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 
 const Chat = (props) => {
-  const { isRoom } = props;
+  const { room } = props;
   const [newMessage, setNewMessage] = useState("");
   const messagesRef = collection(db, "messages");
 
@@ -15,7 +15,7 @@ const Chat = (props) => {
       text: newMessage,
       createdAt: serverTimestamp(),
       user: auth.currentUser.displayName,
-      isRoom,
+      room,
     });
 
     setNewMessage("");
