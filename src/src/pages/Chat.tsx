@@ -13,7 +13,6 @@ const Chat = (props) => {
   const { room } = props;
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
-
   const messagesRef = collection(db, "messages");
 
   useEffect(() => {
@@ -21,9 +20,8 @@ const Chat = (props) => {
     onSnapshot(queryMessages, (snapshot) => {
       let messagesArray = [];
       snapshot.forEach((doc) => {
-        messagesArray.push({ ...doc.data(), key: doc.id });
+        messagesArray.push({ ...doc.data(), id: doc.id });
       });
-
       setMessages(messagesArray);
     });
   }, []);
@@ -31,14 +29,12 @@ const Chat = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newMessage === "") return;
-
     await addDoc(messagesRef, {
       text: newMessage,
       createdAt: serverTimestamp(),
       user: auth.currentUser.displayName,
       room,
     });
-
     setNewMessage("");
   };
 
