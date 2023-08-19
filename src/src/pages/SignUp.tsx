@@ -4,13 +4,16 @@ import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-const SignUp = (props) => {
-  const { setIsAuth } = props;
+interface Props {
+  setIsAuth: Function;
+}
+
+const SignUp = (props: Props) => {
   const signInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
       cookies.set("auth-token", result.user.refreshToken);
-      setIsAuth(true);
+      props.setIsAuth(true);
     } catch (err) {
       console.error(err);
     }
