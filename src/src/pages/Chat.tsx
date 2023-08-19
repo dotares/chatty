@@ -6,6 +6,7 @@ import {
   query,
   where,
   serverTimestamp,
+  orderBy,
 } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 
@@ -16,7 +17,11 @@ const Chat = (props) => {
   const messagesRef = collection(db, "messages");
 
   useEffect(() => {
-    const queryMessages = query(messagesRef, where("room", "==", room));
+    const queryMessages = query(
+      messagesRef,
+      where("room", "==", room),
+      orderBy("createdAt")
+    );
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
       let messagesArray = [];
       snapshot.forEach((doc) => {
