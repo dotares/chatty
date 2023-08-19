@@ -10,8 +10,12 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 
-const Chat = (props) => {
-  const { room } = props;
+interface Props {
+  room: number;
+}
+
+const Chat = (props: Props) => {
+  // const { room } = props;
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const messagesRef = collection(db, "messages");
@@ -19,7 +23,7 @@ const Chat = (props) => {
   useEffect(() => {
     const queryMessages = query(
       messagesRef,
-      where("room", "==", room),
+      where("room", "==", props.room),
       orderBy("createdAt")
     );
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
@@ -40,7 +44,7 @@ const Chat = (props) => {
       text: newMessage,
       createdAt: serverTimestamp(),
       user: auth.currentUser.displayName,
-      room,
+      room: props.room,
     });
     setNewMessage("");
   };
@@ -48,7 +52,7 @@ const Chat = (props) => {
   return (
     <div>
       <div>
-        <h1 className="text-xl text-center">Welcome to: {room}</h1>
+        <h1 className="text-xl text-center">Welcome to: {props.room}</h1>
       </div>
       <div className="fixed bottom-0 w-full">
         <div>
