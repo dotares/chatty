@@ -17,13 +17,15 @@ const Chat = (props) => {
 
   useEffect(() => {
     const queryMessages = query(messagesRef, where("room", "==", room));
-    onSnapshot(queryMessages, (snapshot) => {
+    const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
       let messagesArray = [];
       snapshot.forEach((doc) => {
         messagesArray.push({ ...doc.data(), id: doc.id });
       });
       setMessages(messagesArray);
     });
+
+    return () => unsubscribe;
   }, []);
 
   const handleSubmit = async (e) => {
@@ -39,22 +41,30 @@ const Chat = (props) => {
   };
 
   return (
-    <div className="fixed bottom-0 w-full">
+    <div>
       <div>
-        {messages.map((message) => (
-          <h1>{message.text}</h1>
-        ))}
+        <h1 className="text-xl text-center">Welcome to: {room}</h1>
       </div>
-      <form className="flex" onSubmit={handleSubmit}>
-        <input
-          className="border-2 w-full border-black"
-          placeholder="Type your message here"
-          onChange={(e) => setNewMessage(e.target.value)}
-          value={newMessage}
-          type="text"
-        />
-        <button type="submit">Send</button>
-      </form>
+      <div className="fixed bottom-0 w-full">
+        <div>
+          {messages.map((message) => (
+            <div key={message.id}>
+              <span className="font-bold">{message.user} </span>
+              <span>{message.text}</span>
+            </div>
+          ))}
+        </div>
+        <form className="flex" onSubmit={handleSubmit}>
+          <input
+            className="border-2 w-full border-black"
+            placeholder="Type your message here"
+            onChange={(e) => setNewMessage(e.target.value)}
+            value={newMessage}
+            type="text"
+          />
+          <button type="submit">Send</button>
+        </form>
+      </div>
     </div>
   );
 };
