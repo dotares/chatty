@@ -1,4 +1,6 @@
 import { useState, useRef } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase-config";
 import SignUp from "./SignUp";
 import Chat from "./Chat";
 import Cookies from "universal-cookie";
@@ -10,6 +12,13 @@ const Home = () => {
   const [room, setRoom] = useState(null);
 
   const roomInputRef = useRef(null);
+
+  const signUserOut = async () => {
+    await signOut(auth);
+    cookies.remove("auth-token");
+    setIsAuth(false);
+    setRoom(null);
+  };
 
   if (!isAuth) {
     return (
@@ -35,6 +44,9 @@ const Home = () => {
           </button>
         </div>
       )}
+      <div>
+        <button onClick={signUserOut}>Sign out</button>
+      </div>
     </div>
   );
 };
