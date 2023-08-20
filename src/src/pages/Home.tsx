@@ -9,9 +9,8 @@ const cookies = new Cookies();
 
 const Home = () => {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
-  const [room, setRoom] = useState(null);
-
-  const roomInputRef = useRef(null);
+  const [room, setRoom] = useState<string | null>(null);
+  const roomInputRef = useRef<HTMLInputElement>(null);
 
   const signUserOut = async () => {
     await signOut(auth);
@@ -39,7 +38,13 @@ const Home = () => {
             type="text"
             ref={roomInputRef}
           />
-          <button onClick={() => setRoom(roomInputRef.current.value)}>
+          <button
+            onClick={() => {
+              if (roomInputRef.current) {
+                setRoom(roomInputRef.current.value);
+              }
+            }}
+          >
             Enter chat
           </button>
         </div>

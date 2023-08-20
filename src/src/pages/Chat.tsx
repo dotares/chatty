@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   addDoc,
   collection,
@@ -11,13 +11,20 @@ import {
 import { auth, db } from "../firebase-config";
 
 interface Props {
-  room: number;
+  room: string;
+}
+
+interface Message {
+  id: string;
+  user: string;
+  text: string;
+  room: string;
+  createdAt: Date;
 }
 
 const Chat = (props: Props) => {
-  // const { room } = props;
   const [newMessage, setNewMessage] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const messagesRef = collection(db, "messages");
 
   useEffect(() => {
@@ -27,25 +34,29 @@ const Chat = (props: Props) => {
       orderBy("createdAt")
     );
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
-      let messagesArray = [];
+      let messagesArray: Message[] = [];
       snapshot.forEach((doc) => {
-        messagesArray.push({ ...doc.data(), id: doc.id });
+        messagesArray.push({ ...doc.data(), id: doc.id } as Message);
       });
       setMessages(messagesArray);
     });
 
-    return () => unsubscribe;
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
     if (newMessage === "") return;
-    await addDoc(messagesRef, {
-      text: newMessage,
-      createdAt: serverTimestamp(),
-      user: auth.currentUser.displayName,
-      room: props.room,
-    });
+    if (auth.currentUser) {
+      await addDoc(messagesRef, {
+        text: newMessage,
+        createdAt: serverTimestamp(),
+        user: auth.currentUser.displayName,
+        room: props.room,
+      });
+    }
     setNewMessage("");
   };
 
@@ -56,7 +67,7 @@ const Chat = (props: Props) => {
       </div>
       <div className="fixed bottom-0 w-full">
         <div>
-          {messages.map((message) => (
+          {messages.map((message: Message) => (
             <div key={message.id}>
               <span className="font-bold">{message.user} </span>
               <span>{message.text}</span>
