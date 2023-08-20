@@ -47,10 +47,10 @@ const Home = () => {
           {room ? (
             <Chat room={room} />
           ) : (
-            <div className="space-x-12 flex">
-              <div className="text-center flex-col">
+            <div className="gap-12 flex sm:flex-row flex-col">
+              <div className="flex flex-row sm:flex-col items-center">
                 <button
-                  className="my-4 flex justify-center items-center transition hover:scale-110 h-[2em] w-[2em] rounded-full p-4 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
+                  className="transition flex justify-center items-center sm:my-4 mx-6 hover:scale-110 h-[2em] w-[2em] rounded-full p-4 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
                   onClick={() => {
                     setRoom("lounge");
                   }}
@@ -66,9 +66,9 @@ const Home = () => {
                 </button>
                 <p className="font-robotomono text-[#B9B4C7]">Lounge</p>
               </div>
-              <div className="text-center flex-col">
+              <div className="flex flex-row sm:flex-col items-center">
                 <button
-                  className="transition flex justify-center items-center my-4 hover:scale-110 h-[2em] w-[2em] rounded-full p-4 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
+                  className="transition flex justify-center items-center sm:my-4 mx-6 hover:scale-110 h-[2em] w-[2em] rounded-full p-4 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
                   onClick={() => {
                     setRoom("arena");
                   }}
@@ -84,9 +84,9 @@ const Home = () => {
                 </button>
                 <p className="font-robotomono text-[#B9B4C7]">Arena</p>
               </div>
-              <div className="text-center flex-col">
+              <div className="flex flex-row sm:flex-col items-center">
                 <button
-                  className="transition hover:scale-110 rounded-full p-4 my-4 flex justify-center items-center h-[2em] w-[2em] text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
+                  className="transition hover:scale-110 rounded-full p-4 sm:my-4 mx-6 flex justify-center items-center h-[2em] w-[2em] text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
                   onClick={() => {
                     setRoom("lab");
                   }}
