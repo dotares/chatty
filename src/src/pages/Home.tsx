@@ -37,6 +37,7 @@ const Home = () => {
             className="border-2 border-black"
             type="text"
             ref={roomInputRef}
+            placeholder="Enter room name"
           />
           <button
             onClick={() => {
