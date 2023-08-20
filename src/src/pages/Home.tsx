@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
 import SignUp from "./SignUp";
 import Chat from "./Chat";
+import Footer from "../components/Footer";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
@@ -28,31 +29,36 @@ const Home = () => {
   }
 
   return (
-    <div>
-      {room ? (
-        <Chat room={room} />
-      ) : (
-        <div>
-          <input
-            className="border-2 border-black"
-            type="text"
-            ref={roomInputRef}
-            placeholder="Enter room name"
-          />
-          <button
-            onClick={() => {
-              if (roomInputRef.current) {
-                setRoom(roomInputRef.current.value);
-              }
-            }}
-          >
-            Enter chat
-          </button>
+    <div className="text-center">
+      <div className="flex h-screen">
+        <div className="m-auto text-center">
+          {room ? (
+            <Chat room={room} />
+          ) : (
+            <div>
+              <input
+                className="border-2 border-black"
+                type="text"
+                ref={roomInputRef}
+                placeholder="Enter room name"
+              />
+              <button
+                onClick={() => {
+                  if (roomInputRef.current) {
+                    setRoom(roomInputRef.current.value);
+                  }
+                }}
+              >
+                Enter chat
+              </button>
+            </div>
+          )}
+          <div>
+            <button onClick={signUserOut}>Sign out</button>
+          </div>
         </div>
-      )}
-      <div>
-        <button onClick={signUserOut}>Sign out</button>
       </div>
+      <Footer />
     </div>
   );
 };
