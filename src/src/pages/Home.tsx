@@ -102,23 +102,25 @@ const Home = () => {
                 </button>
                 <p className="font-robotomono text-[#B9B4C7]">Lab</p>
               </div>
-              {/* <input
-                className="border-2 border-black"
-                type="text"
-                ref={roomInputRef}
-                placeholder="Enter room name"
-              /> */}
-              {/* <button
-                onClick={() => {
-                  if (roomInputRef.current) {
-                    setRoom(roomInputRef.current.value);
-                  }
-                }}
-              >
-                Enter chat
-              </button> */}
             </div>
           )}
+          <div className="my-12">
+            <input
+              className=""
+              type="text"
+              ref={roomInputRef}
+              placeholder="Enter room name"
+            />
+            <button
+              onClick={() => {
+                if (roomInputRef.current) {
+                  setRoom(roomInputRef.current.value);
+                }
+              }}
+            >
+              Enter chat
+            </button>
+          </div>
         </div>
       </div>
       <Footer />
