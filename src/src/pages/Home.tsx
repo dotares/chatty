@@ -41,18 +41,20 @@ const Home = () => {
           </svg>
         </button>
       </div>
-      <div className="flex h-screen">
-        <div className="m-auto text-center">
-          {room ? (
-            <Chat room={room} />
-          ) : (
+      {room ? (
+        <div>
+          <Chat room={room} />
+        </div>
+      ) : (
+        <div className="flex h-screen">
+          <div className="m-auto text-center">
             <div>
               <div className="gap-12 flex sm:flex-row flex-col">
                 <div className="flex flex-row sm:flex-col items-center">
                   <button
                     className="transition flex justify-center items-center sm:my-4 mx-6 hover:scale-110 h-[2em] w-[2em] rounded-full p-4 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
                     onClick={() => {
-                      setRoom("lounge");
+                      setRoom("Lounge");
                     }}
                   >
                     <svg
@@ -70,7 +72,7 @@ const Home = () => {
                   <button
                     className="transition flex justify-center items-center sm:my-4 mx-6 hover:scale-110 h-[2em] w-[2em] rounded-full p-4 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
                     onClick={() => {
-                      setRoom("arena");
+                      setRoom("Arena");
                     }}
                   >
                     <svg
@@ -88,7 +90,7 @@ const Home = () => {
                   <button
                     className="transition hover:scale-110 rounded-full p-4 sm:my-4 mx-6 flex justify-center items-center h-[2em] w-[2em] text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
                     onClick={() => {
-                      setRoom("lab");
+                      setRoom("Lab");
                     }}
                   >
                     <svg
@@ -129,9 +131,9 @@ const Home = () => {
                 </button>
               </div>
             </div>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
