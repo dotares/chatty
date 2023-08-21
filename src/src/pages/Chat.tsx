@@ -14,7 +14,7 @@ import SignOut from "../components/SignOut";
 interface Props {
   room: string;
   resetRoom: Function;
-  signUserOut: Function;
+  signUserOut: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 interface Message {

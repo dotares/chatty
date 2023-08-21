@@ -1,5 +1,5 @@
 interface Props {
-  signUserOut: Function;
+  signUserOut: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const SignOut = (props: Props) => {
