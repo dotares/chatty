@@ -104,15 +104,15 @@ const Home = () => {
                   <p className="font-robotomono text-[#B9B4C7]">Lab</p>
                 </div>
               </div>
-              <div className="my-20 bg-[#5C5470] rounded-full p-4 px-6 flex justify-center drop-shadow-xl">
+              <div className="font-robotomono my-20 bg-[#5C5470] rounded-full p-4 pl-6 flex justify-center drop-shadow-xl">
                 <input
-                  className="w-full border-[#FAF0E6] border-r-[1px] mr-2 bg-[#5C5470] text-[#FAF0E6] placeholder:font-robotomono placeholder:text-[#B9B4C7] placeholder:px-2 outline-0 placeholder:text-sm"
+                  className="w-full bg-[#5C5470] text-[#FAF0E6] placeholder:font-robotomono placeholder:text-[#B9B4C7] outline-0 placeholder:text-sm"
                   placeholder="Enter room name ..."
                   type="text"
                   ref={roomInputRef}
                 />
                 <button
-                  className="px-2"
+                  className="p-4 drop-shadow-xl bg-[#352F44] rounded-full"
                   onClick={() => {
                     if (roomInputRef.current) {
                       setRoom(roomInputRef.current.value);
