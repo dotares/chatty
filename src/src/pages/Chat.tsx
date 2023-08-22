@@ -114,7 +114,10 @@ const Chat = (props: Props) => {
             key={message.id}
           >
             <div className="mx-4">
-              <img className="h-12 w-12 rounded-full drop-shadow-lg" src={message.photo} />
+              <img
+                className="h-12 w-12 rounded-full drop-shadow-lg"
+                src={message.photo}
+              />
             </div>
             <div className="flex flex-col w-2/3">
               <div className="flex space-x-2 items-center">
@@ -142,7 +145,7 @@ const Chat = (props: Props) => {
           />
           <button className="px-4" type="submit">
             <svg
-              className="fill-[#FAF0E6] text-2xl"
+              className="transition fill-[#FAF0E6] text-2xl hover:scale-150"
               xmlns="http://www.w3.org/2000/svg"
               height="1em"
               viewBox="0 0 512 512"
