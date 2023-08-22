@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         pacifico: ["Pacifico"],
         robotomono: ["Roboto Mono"],
+        rubik: ["Rubik"],
       },
     },
   },
