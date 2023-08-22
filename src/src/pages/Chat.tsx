@@ -30,7 +30,7 @@ const Chat = (props: Props) => {
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const messagesRef = collection(db, "messages");
-  const chatRef = useRef(null);
+  const chatRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
     if (chatRef.current) {
