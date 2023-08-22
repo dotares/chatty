@@ -23,7 +23,7 @@ interface Message {
   text: string;
   room: string;
   photo: string;
-  createdAt: Date;
+  createdAt: number;
 }
 
 const Chat = (props: Props) => {
@@ -72,6 +72,19 @@ const Chat = (props: Props) => {
     setNewMessage("");
   };
 
+  const getTime = (unixTimestamp: number) => {
+    const date = new Date(unixTimestamp * 1000);
+    const day = date.toLocaleDateString("en-IN", {
+      month: "2-digit",
+      day: "2-digit",
+    });
+    const time = date.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return `on ${day} @ ${time}`;
+  };
+
   return (
     <div>
       <div className="flex flex-row w-full bg-[#352F44] top-0 z-10 fixed justify-between">
@@ -104,8 +117,15 @@ const Chat = (props: Props) => {
               <img className="h-12 w-12 drop-shadow-lg" src={message.photo} />
             </div>
             <div className="flex flex-col w-2/3">
-              <p className="font-bold">{message.user}</p>
-              <p className="">{message.text}</p>
+              <div className="flex space-x-2 items-center">
+                <p className="font-bold">{message.user}</p>
+                <p className="font-light text-[#B9B4C7] text-[0.7em]">
+                  {getTime(message.createdAt)}
+                </p>
+              </div>
+              <div>
+                <p className="">{message.text}</p>
+              </div>
             </div>
           </div>
         ))}
