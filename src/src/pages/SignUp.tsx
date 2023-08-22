@@ -30,11 +30,11 @@ const SignUp = (props: Props) => {
           </div>
           <div>
             <button
-              className="transition hover:scale-110 rounded-full p-2 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
+              className="group transition hover:scale-110 rounded-full p-2 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
               onClick={signInWithGoogle}
             >
               <svg
-                className="transition hover:scale-110 fill-[#B9B4C7] hover:fill-[#5C5470]"
+                className="transition group-hover:scale-110 fill-[#B9B4C7] group-hover:fill-[#5C5470]"
                 xmlns="http://www.w3.org/2000/svg"
                 height="1em"
                 viewBox="0 0 488 512"

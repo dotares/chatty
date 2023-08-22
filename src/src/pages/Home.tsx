@@ -48,13 +48,13 @@ const Home = () => {
               <div className="gap-12 flex sm:flex-row flex-col">
                 <div className="flex flex-row sm:flex-col items-center">
                   <button
-                    className="transition flex justify-center items-center sm:my-4 mx-6 hover:scale-110 h-[2em] w-[2em] rounded-full p-4 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
+                    className="group transition flex justify-center items-center sm:my-4 mx-6 hover:scale-110 h-[2em] w-[2em] rounded-full p-4 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
                     onClick={() => {
                       setRoom("Lounge");
                     }}
                   >
                     <svg
-                      className="transition hover:scale-110 fill-[#FAF0E6] hover:fill-[#5C5470]"
+                      className="transition group-hover:scale-110 fill-[#FAF0E6] group-hover:fill-[#5C5470]"
                       xmlns="http://www.w3.org/2000/svg"
                       height="1em"
                       viewBox="0 0 640 512"
@@ -66,13 +66,13 @@ const Home = () => {
                 </div>
                 <div className="flex flex-row sm:flex-col items-center">
                   <button
-                    className="transition flex justify-center items-center sm:my-4 mx-6 hover:scale-110 h-[2em] w-[2em] rounded-full p-4 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
+                    className="group transition flex justify-center items-center sm:my-4 mx-6 hover:scale-110 h-[2em] w-[2em] rounded-full p-4 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
                     onClick={() => {
                       setRoom("Arena");
                     }}
                   >
                     <svg
-                      className="transition hover:scale-110 fill-[#FAF0E6] hover:fill-[#5C5470]"
+                      className="transition group-hover:scale-110 fill-[#FAF0E6] group-hover:fill-[#5C5470]"
                       xmlns="http://www.w3.org/2000/svg"
                       height="1em"
                       viewBox="0 0 512 512"
@@ -84,13 +84,13 @@ const Home = () => {
                 </div>
                 <div className="flex flex-row sm:flex-col items-center">
                   <button
-                    className="transition hover:scale-110 rounded-full p-4 sm:my-4 mx-6 flex justify-center items-center h-[2em] w-[2em] text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
+                    className="group transition hover:scale-110 rounded-full p-4 sm:my-4 mx-6 flex justify-center items-center h-[2em] w-[2em] text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
                     onClick={() => {
                       setRoom("Lab");
                     }}
                   >
                     <svg
-                      className="transition hover:scale-110 fill-[#FAF0E6] hover:fill-[#5C5470]"
+                      className="transition group-hover:scale-110 fill-[#FAF0E6] group-hover:fill-[#5C5470]"
                       xmlns="http://www.w3.org/2000/svg"
                       height="1em"
                       viewBox="0 0 448 512"
@@ -109,7 +109,7 @@ const Home = () => {
                   ref={roomInputRef}
                 />
                 <button
-                  className="p-4 drop-shadow-xl bg-[#352F44] rounded-full"
+                  className="group p-4 drop-shadow-xl bg-[#352F44] rounded-full transition hover:scale-110 hover:bg-[#B9B4C7]"
                   onClick={() => {
                     if (roomInputRef.current) {
                       setRoom(roomInputRef.current.value);
@@ -117,9 +117,9 @@ const Home = () => {
                   }}
                 >
                   <svg
-                    className="fill-[#FAF0E6]"
+                    className="transition h-full w-full fill-[#FAF0E6] group-hover:fill-[#5C5470] group-hover:scale-110"
                     xmlns="http://www.w3.org/2000/svg"
-                    height="1em"
+                    height="1.2em"
                     viewBox="0 0 512 512"
                   >
                     <path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z" />
