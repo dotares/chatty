@@ -114,7 +114,7 @@ const Chat = (props: Props) => {
             key={message.id}
           >
             <div className="mx-4">
-              <img className="h-12 w-12 drop-shadow-lg" src={message.photo} />
+              <img className="h-12 w-12 rounded-full drop-shadow-lg" src={message.photo} />
             </div>
             <div className="flex flex-col w-2/3">
               <div className="flex space-x-2 items-center">
