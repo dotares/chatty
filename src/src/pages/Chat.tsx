@@ -87,8 +87,8 @@ const Chat = (props: Props) => {
 
   return (
     <div>
-      <div className="flex flex-row w-full bg-[#352F44] top-0 z-10 fixed justify-between">
-        <div className="p-8">
+      <div className="flex flex-row w-full bg-[#352F44] p-8 top-0 z-10 fixed justify-between items-center">
+        <div>
           <button onClick={() => props.resetRoom()}>
             <svg
               className="fill-[#FAF0E6] text-2xl"
@@ -100,14 +100,14 @@ const Chat = (props: Props) => {
             </svg>
           </button>
         </div>
-        <div className="font-pacifico text-[#FAF0E6] p-6">
+        <div className="font-pacifico text-[#FAF0E6]">
           <h1 className="text-4xl text-center">{props.room}</h1>
         </div>
-        <div className="p-8">
+        <div>
           <SignOut signUserOut={props.signUserOut} />
         </div>
       </div>
-      <div className="overflow-y-auto mt-[5em] mb-[5em]">
+      <div className="overflow-y-auto mt-[7em] mb-[5em]">
         {messages.map((message: Message) => (
           <div
             className="text-[#FAF0E6] font-rubik flex text-left md:mx-[5%] lg:mx-[10%] xl:mx-[20%] p-4"
