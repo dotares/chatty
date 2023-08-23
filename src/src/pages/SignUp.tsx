@@ -23,17 +23,20 @@ const SignUp = (props: Props) => {
     <div className="text-center">
       <div className="flex flex-col text-center h-screen">
         <div className="m-auto">
-          <div>
-            <h1 className="py-20 font-pacifico text-8xl text-[#FAF0E6] drop-shadow-xl">
+          <div className="py-16 space-y-16">
+            <h1 className="font-pacifico text-8xl text-[#FAF0E6] drop-shadow-lg">
               Chatty
             </h1>
+            <p className="font-robotomono text-2xl text-[#B9B4C7] drop-shadow-lg">
+              A bloat-free chat application
+            </p>
           </div>
           <div>
             <button
-              className="group transition hover:scale-110 rounded-xl w-full p-4 text-md bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
+              className="group transition hover:scale-110 rounded-xl w-2/3 p-4 text-md bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
               onClick={signInWithGoogle}
             >
-              <div className="flex font-rubik  items-center justify-center space-x-4">
+              <div className="flex font-rubik items-center justify-center space-x-4">
                 <div>
                   <svg
                     className="transition group-hover:scale-110 fill-[#B9B4C7] group-hover:fill-[#352F44]"
