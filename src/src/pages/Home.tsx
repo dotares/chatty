@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
 import SignUp from "./SignUp";
@@ -11,7 +11,23 @@ const cookies = new Cookies();
 const Home = () => {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [room, setRoom] = useState<string | null>(null);
+  const [userPhoto, setUserPhoto] = useState<string | null>(null);
+  const [userDisplayName, setUserDisplayName] = useState<string | null>(null);
   const roomInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUserPhoto(user.photoURL);
+        setUserDisplayName(user.displayName);
+      } else {
+        setUserPhoto(null);
+        setUserDisplayName(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const signUserOut = async () => {
     await signOut(auth);
@@ -40,6 +56,15 @@ const Home = () => {
         </div>
       ) : (
         <div className="flex h-screen">
+          <div className="left-0 fixed p-8 flex items-center space-x-4 text-lg font-rubik text-[#FAF0E6]">
+            <div>
+              <img
+                className="h-8 rounded-full drop-shadow-xl"
+                src={userPhoto}
+              />
+            </div>
+            <div className="font-bold drop-shadow-xl">{userDisplayName}</div>
+          </div>
           <div className="right-0 fixed p-8">
             <SignOut signUserOut={signUserOut} />
           </div>
