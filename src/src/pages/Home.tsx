@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, ImgHTMLAttributes } from "react";
+import { useState, useRef, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
 import SignUp from "./SignUp";
