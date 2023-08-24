@@ -114,7 +114,7 @@ const Chat = (props: Props) => {
       <div className="overflow-y-auto mt-[7em] mb-[6em]">
         {messages.map((message: Message) => (
           <div
-            className="text-[#FAF0E6] items-center group font-rubik flex text-left md:mx-[5%] lg:mx-[10%] xl:mx-[20%] p-4"
+            className="text-[#FAF0E6] justify-center group font-rubik flex text-left md:mx-[5%] lg:mx-[10%] xl:mx-[20%] p-4"
             key={message.id}
           >
             <div className="mx-4">
