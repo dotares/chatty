@@ -192,7 +192,7 @@ const Chat = (props: Props) => {
             className="hidden"
             name="myFile"
             type="file"
-            onChange={(e) => {
+            onChange={(e: any) => {
               setSelectedImage(e.target.files[0]);
             }}
           />
