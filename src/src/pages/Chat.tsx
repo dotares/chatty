@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
   addDoc,
+  deleteDoc,
   collection,
   onSnapshot,
   query,
@@ -85,12 +86,10 @@ const Chat = (props: Props) => {
     return `on ${day} @ ${time}`;
   };
 
-  const checkUser = (message: object) => {
-    if (message.user === auth.currentUser?.displayName) {
+  const checkUser = (message: Message) => {
+    if (message.user === auth.currentUser?.displayName)
       return "invisible group-hover:visible";
-    } else {
-      return "invisible";
-    }
+    else return "invisible";
   };
 
   return (
