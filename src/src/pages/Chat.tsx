@@ -86,12 +86,6 @@ const Chat = (props: Props) => {
     return `on ${day} @ ${time}`;
   };
 
-  const checkUser = (message: Message) => {
-    if (message.user === auth.currentUser?.displayName)
-      return "invisible group-hover:visible";
-    else return "invisible";
-  };
-
   return (
     <div>
       <div className="flex flex-row w-full bg-[#352F44] p-8 top-0 z-10 fixed justify-between items-center">
@@ -137,7 +131,13 @@ const Chat = (props: Props) => {
                 <p>{message.text}</p>
               </div>
             </div>
-            <div className={checkUser(message)}>
+            <div
+              className={`${
+                message.user === auth.currentUser?.displayName
+                  ? "invisible group-hover:visible"
+                  : "invisible"
+              }`}
+            >
               <button
                 onClick={() => {
                   console.log("ive been clicked");
