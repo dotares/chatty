@@ -110,7 +110,7 @@ const Chat = (props: Props) => {
           <SignOut signUserOut={props.signUserOut} />
         </div>
       </div>
-      <div className="overflow-y-auto mt-[7em] mb-[5em]">
+      <div className="overflow-y-auto mt-[7em] mb-[6em]">
         {messages.map((message: Message) => (
           <div
             className="text-[#FAF0E6] items-center group font-rubik flex text-left md:mx-[5%] lg:mx-[10%] xl:mx-[20%] p-4"
