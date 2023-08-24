@@ -7,7 +7,7 @@ const SignOut = (props: Props) => {
     <div>
       <button onClick={props.signUserOut}>
         <svg
-          className="fill-[#FAF0E6] text-2xl"
+          className="fill-[#FAF0E6] transition hover:scale-150 text-2xl"
           xmlns="http://www.w3.org/2000/svg"
           height="1em"
           viewBox="0 0 512 512"
