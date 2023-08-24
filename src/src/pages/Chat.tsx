@@ -24,14 +24,14 @@ interface Message {
   user: string;
   text: string;
   room: string;
-  photo: string;
+  profilePhoto: string;
   createdAt: number;
 }
 
 const Chat = (props: Props) => {
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
-  const [selectedImage, setSelectedImage] = useState<null>(null);
+  const [selectedImage, setSelectedImage] = useState<null | Blob>(null);
   const messagesRef = collection(db, "messages");
   const chatRef = useRef<null | HTMLDivElement>(null);
 
@@ -62,17 +62,18 @@ const Chat = (props: Props) => {
 
   const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
-    if (newMessage === "") return;
+    if (newMessage === "" && selectedImage === null) return;
     if (auth.currentUser) {
       await addDoc(messagesRef, {
         text: newMessage,
         createdAt: serverTimestamp(),
-        photo: auth.currentUser.photoURL,
+        profilePhoto: auth.currentUser.photoURL,
         user: auth.currentUser.displayName,
         room: props.room,
       });
     }
     setNewMessage("");
+    setSelectedImage(null);
   };
 
   const getTime = (unixTimestamp: number) => {
@@ -119,7 +120,7 @@ const Chat = (props: Props) => {
             <div className="mx-4">
               <img
                 className="h-12 w-12 rounded-full drop-shadow-lg"
-                src={message.photo}
+                src={message.profilePhoto}
               />
             </div>
             <div className="flex flex-col w-2/3">
@@ -146,7 +147,7 @@ const Chat = (props: Props) => {
                 }}
               >
                 <svg
-                  className="transition fill-[#FAF0E6] hover:fill-[#FF0000] hover:scale-150"
+                  className="drop-shadow-xl transition fill-[#FAF0E6] hover:fill-[#FF0000] hover:scale-150"
                   xmlns="http://www.w3.org/2000/svg"
                   height="1em"
                   viewBox="0 0 384 512"
