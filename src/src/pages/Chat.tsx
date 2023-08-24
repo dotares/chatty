@@ -90,7 +90,7 @@ const Chat = (props: Props) => {
 
   return (
     <div>
-      <div className="flex flex-row w-full bg-[#352F44] p-8 top-0 z-10 fixed justify-between items-center">
+      <div className="flex flex-row w-full backdrop-blur-xl	p-8 top-0 z-10 fixed justify-between items-center">
         <div>
           <button onClick={() => props.resetRoom()}>
             <svg
