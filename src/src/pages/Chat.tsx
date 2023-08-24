@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
   addDoc,
-  deleteDoc,
+  doc,
   collection,
   onSnapshot,
   query,
   where,
   serverTimestamp,
   orderBy,
+  deleteDoc,
 } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 import SignOut from "../components/SignOut";
@@ -132,15 +133,15 @@ const Chat = (props: Props) => {
               </div>
             </div>
             <div
-              className={`${
+              className={`invisible ${
                 message.user === auth.currentUser?.displayName
-                  ? "invisible group-hover:visible"
-                  : "invisible"
+                  ? "group-hover:visible"
+                  : ""
               }`}
             >
               <button
-                onClick={() => {
-                  console.log("ive been clicked");
+                onClick={async () => {
+                  await deleteDoc(doc(db, "messages", message.id));
                 }}
               >
                 X
