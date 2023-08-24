@@ -31,6 +31,7 @@ interface Message {
 const Chat = (props: Props) => {
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
+  const [selectedImage, setSelectedImage] = useState<null>(null);
   const messagesRef = collection(db, "messages");
   const chatRef = useRef<null | HTMLDivElement>(null);
 
@@ -159,7 +160,41 @@ const Chat = (props: Props) => {
         <div ref={chatRef} />
       </div>
       <form className="w-full bottom-0 fixed" onSubmit={handleSubmit}>
+        <div>
+          {selectedImage && (
+            <div className="bg-[#5C5470] w-fit rounded-xl p-6 m-8 drop-shadow-xl">
+              <img
+                className="h-80 rounded-xl"
+                onClick={() => setSelectedImage(null)}
+                src={URL.createObjectURL(selectedImage)}
+              />
+            </div>
+          )}
+        </div>
         <div className="font-robotomono py-6 bg-[#5C5470] p-4 pl-6 mt-6 flex justify-center">
+          <label
+            id="myFile-label"
+            className="bg-[#B9B4C7] p-2 rounded-full mr-6 drop-shadow-xl"
+            htmlFor="myFile"
+          >
+            <svg
+              className="fill-[#352F44]"
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 448 512"
+            >
+              <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+            </svg>
+          </label>
+          <input
+            id="myFile"
+            className="hidden"
+            name="myFile"
+            type="file"
+            onChange={(e) => {
+              setSelectedImage(e.target.files[0]);
+            }}
+          />
           <input
             className="w-full bg-[#5C5470] text-[#FAF0E6] placeholder:font-robotomono placeholder:text-[#B9B4C7] outline-0 placeholder:text-sm"
             placeholder={`Message ${props.room}`}
