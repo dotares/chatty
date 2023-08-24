@@ -85,6 +85,14 @@ const Chat = (props: Props) => {
     return `on ${day} @ ${time}`;
   };
 
+  const checkUser = (message: object) => {
+    if (message.user === auth.currentUser?.displayName) {
+      return "invisible group-hover:visible";
+    } else {
+      return "invisible";
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-row w-full bg-[#352F44] p-8 top-0 z-10 fixed justify-between items-center">
@@ -110,7 +118,7 @@ const Chat = (props: Props) => {
       <div className="overflow-y-auto mt-[7em] mb-[5em]">
         {messages.map((message: Message) => (
           <div
-            className="text-[#FAF0E6] font-rubik flex text-left md:mx-[5%] lg:mx-[10%] xl:mx-[20%] p-4"
+            className="text-[#FAF0E6] items-center group font-rubik flex text-left md:mx-[5%] lg:mx-[10%] xl:mx-[20%] p-4"
             key={message.id}
           >
             <div className="mx-4">
@@ -127,8 +135,17 @@ const Chat = (props: Props) => {
                 </p>
               </div>
               <div>
-                <p className="">{message.text}</p>
+                <p>{message.text}</p>
               </div>
+            </div>
+            <div className={checkUser(message)}>
+              <button
+                onClick={() => {
+                  console.log("ive been clicked");
+                }}
+              >
+                X
+              </button>
             </div>
           </div>
         ))}
