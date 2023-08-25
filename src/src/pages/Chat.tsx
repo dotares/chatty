@@ -101,11 +101,6 @@ const Chat = (props: Props) => {
   const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
     if (newMessage === "" && selectedImage === null) return;
-    if (selectedImage != null) {
-      uploadImage(selectedImage);
-      setSelectedImage(null);
-      setImageURL("");
-    }
     if (auth.currentUser) {
       await addDoc(messagesRef, {
         text: newMessage,
@@ -115,6 +110,11 @@ const Chat = (props: Props) => {
         user: auth.currentUser.displayName,
         room: props.room,
       });
+      if (selectedImage != null) {
+        uploadImage(selectedImage);
+        setSelectedImage(null);
+        setImageURL("");
+      }
     }
     setNewMessage("");
   };
