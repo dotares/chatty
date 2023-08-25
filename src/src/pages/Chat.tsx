@@ -10,7 +10,8 @@ import {
   orderBy,
   deleteDoc,
 } from "firebase/firestore";
-import { auth, db } from "../firebase-config";
+import { auth, db, storage } from "../firebase-config";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import SignOut from "../components/SignOut";
 
 interface Props {
@@ -25,6 +26,7 @@ interface Message {
   text: string;
   room: string;
   profilePhoto: string;
+  imageURL: string;
   createdAt: number;
 }
 
@@ -32,6 +34,7 @@ const Chat = (props: Props) => {
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedImage, setSelectedImage] = useState<null | Blob>(null);
+  const [imageURL, setImageURL] = useState<string>("");
   const messagesRef = collection(db, "messages");
   const chatRef = useRef<null | HTMLDivElement>(null);
 
@@ -63,17 +66,20 @@ const Chat = (props: Props) => {
   const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
     if (newMessage === "" && selectedImage === null) return;
+    if (selectedImage != null) uploadImage(selectedImage);
     if (auth.currentUser) {
       await addDoc(messagesRef, {
         text: newMessage,
         createdAt: serverTimestamp(),
         profilePhoto: auth.currentUser.photoURL,
+        imageURL,
         user: auth.currentUser.displayName,
         room: props.room,
       });
     }
     setNewMessage("");
     setSelectedImage(null);
+    setImageURL("");
   };
 
   const getTime = (unixTimestamp: number) => {
@@ -87,6 +93,28 @@ const Chat = (props: Props) => {
       minute: "2-digit",
     });
     return `on ${day} @ ${time}`;
+  };
+
+  const uploadImage = (selectedImage: Blob) => {
+    const storageRef = ref(storage, selectedImage.name);
+    const uploadTask = uploadBytesResumable(storageRef, selectedImage);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(`${progress}% done`);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImageURL(downloadURL);
+        });
+      }
+    );
   };
 
   return (
@@ -131,7 +159,11 @@ const Chat = (props: Props) => {
                 </p>
               </div>
               <div>
-                <p>{message.text}</p>
+                {message.imageURL ? (
+                  <img src={message.imageURL} />
+                ) : (
+                  <p>{message.text}</p>
+                )}
               </div>
             </div>
             <div
