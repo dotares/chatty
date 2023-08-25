@@ -63,25 +63,6 @@ const Chat = (props: Props) => {
     };
   }, []);
 
-  const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
-    e.preventDefault();
-    if (newMessage === "" && selectedImage === null) return;
-    if (selectedImage != null) uploadImage(selectedImage);
-    if (auth.currentUser) {
-      await addDoc(messagesRef, {
-        text: newMessage,
-        createdAt: serverTimestamp(),
-        profilePhoto: auth.currentUser.photoURL,
-        imageURL,
-        user: auth.currentUser.displayName,
-        room: props.room,
-      });
-    }
-    setNewMessage("");
-    setSelectedImage(null);
-    setImageURL("");
-  };
-
   const getTime = (unixTimestamp: number) => {
     const date = new Date(unixTimestamp * 1000);
     const day = date.toLocaleDateString("en-IN", {
@@ -115,6 +96,27 @@ const Chat = (props: Props) => {
         });
       }
     );
+  };
+
+  const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
+    e.preventDefault();
+    if (newMessage === "" && selectedImage === null) return;
+    if (selectedImage != null) {
+      uploadImage(selectedImage);
+      setSelectedImage(null);
+      setImageURL("");
+    }
+    if (auth.currentUser) {
+      await addDoc(messagesRef, {
+        text: newMessage,
+        createdAt: serverTimestamp(),
+        profilePhoto: auth.currentUser.photoURL,
+        imageURL,
+        user: auth.currentUser.displayName,
+        room: props.room,
+      });
+    }
+    setNewMessage("");
   };
 
   return (
@@ -159,12 +161,9 @@ const Chat = (props: Props) => {
                 </p>
               </div>
               <div>
-                {message.imageURL ? (
-                  <img src={message.imageURL} />
-                ) : (
-                  <p>{message.text}</p>
-                )}
+                {message.imageURL ? <img src={message.imageURL} /> : ""}
               </div>
+              <p>{message.text}</p>
             </div>
             <div
               className={`invisible ${
