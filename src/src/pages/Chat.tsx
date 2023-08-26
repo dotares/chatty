@@ -38,6 +38,12 @@ const Chat = (props: Props) => {
   const messagesRef = collection(db, "messages");
   const chatRef = useRef<null | HTMLDivElement>(null);
 
+  const clearStates = () => {
+    setSelectedImage(null);
+    setImageURL("");
+    setNewMessage("");
+  };
+
   useEffect(() => {
     if (chatRef.current) {
       chatRef.current.scrollIntoView({ behavior: "smooth" });
@@ -93,6 +99,7 @@ const Chat = (props: Props) => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageURL(downloadURL);
+          console.log(`Download link available at: ${downloadURL}`);
         });
       }
     );
@@ -110,14 +117,15 @@ const Chat = (props: Props) => {
         user: auth.currentUser.displayName,
         room: props.room,
       });
-      if (selectedImage != null) {
-        uploadImage(selectedImage);
-        setSelectedImage(null);
-        setImageURL("");
-      }
+      clearStates();
     }
-    setNewMessage("");
   };
+
+  useEffect(() => {
+    if (selectedImage != null) {
+      uploadImage(selectedImage);
+    }
+  }, [selectedImage]);
 
   return (
     <div>
@@ -161,7 +169,11 @@ const Chat = (props: Props) => {
                 </p>
               </div>
               <div>
-                {message.imageURL ? <img src={message.imageURL} /> : ""}
+                {message.imageURL ? (
+                  <img className="rounded-xl p-2" src={message.imageURL} />
+                ) : (
+                  ""
+                )}
               </div>
               <p>{message.text}</p>
             </div>
