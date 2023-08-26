@@ -48,7 +48,7 @@ const Chat = (props: Props) => {
 
   useEffect(() => {
     if (chatRef.current) {
-      chatRef.current.scrollIntoView({ behavior: "smooth" });
+      chatRef.current.scrollIntoView();
     }
   }, [messages]);
 
