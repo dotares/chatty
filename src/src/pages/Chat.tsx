@@ -37,8 +37,10 @@ const Chat = (props: Props) => {
   const [imageURL, setImageURL] = useState<string>("");
   const messagesRef = collection(db, "messages");
   const chatRef = useRef<null | HTMLDivElement>(null);
+  let progress: number = 0;
 
   const clearStates = () => {
+    progress = 0;
     setSelectedImage(null);
     setImageURL("");
     setNewMessage("");
@@ -89,8 +91,9 @@ const Chat = (props: Props) => {
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        progress = Math.trunc(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
         console.log(`${progress}% done`);
       },
       (error) => {
@@ -171,9 +174,7 @@ const Chat = (props: Props) => {
               <div>
                 {message.imageURL ? (
                   <img className="rounded-xl p-2" src={message.imageURL} />
-                ) : (
-                  ""
-                )}
+                ) : null}
               </div>
               <p>{message.text}</p>
             </div>
