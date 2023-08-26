@@ -11,7 +11,12 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { auth, db, storage } from "../firebase-config";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 import SignOut from "../components/SignOut";
 
 interface Props {
@@ -27,6 +32,7 @@ interface Message {
   room: string;
   profilePhoto: string;
   imageURL: string;
+  imageName: string;
   createdAt: number;
 }
 
@@ -35,6 +41,7 @@ const Chat = (props: Props) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedImage, setSelectedImage] = useState<null | Blob>(null);
   const [imageURL, setImageURL] = useState<string>("");
+  const [imageName, setImageName] = useState<string>("");
   const messagesRef = collection(db, "messages");
   const chatRef = useRef<null | HTMLDivElement>(null);
   let progress: number = 0;
@@ -84,6 +91,18 @@ const Chat = (props: Props) => {
     return `on ${day} @ ${time}`;
   };
 
+  const deleteImage = (imageName: string) => {
+    const storageRef = ref(storage, imageName);
+
+    deleteObject(storageRef)
+      .then(() => {
+        console.log(`File ${storageRef}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const uploadImage = (selectedImage: Blob) => {
     const storageRef = ref(storage, selectedImage.name);
     const uploadTask = uploadBytesResumable(storageRef, selectedImage);
@@ -102,6 +121,7 @@ const Chat = (props: Props) => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageURL(downloadURL);
+          setImageName(selectedImage.name);
           console.log(`Download link available at: ${downloadURL}`);
         });
       }
@@ -117,6 +137,7 @@ const Chat = (props: Props) => {
         createdAt: serverTimestamp(),
         profilePhoto: auth.currentUser.photoURL,
         imageURL,
+        imageName,
         user: auth.currentUser.displayName,
         room: props.room,
       });
@@ -172,9 +193,7 @@ const Chat = (props: Props) => {
                 </p>
               </div>
               <div>
-                {message.imageURL ? (
-                  <img className="rounded-xl p-2" src={message.imageURL} />
-                ) : null}
+                <img className="rounded-xl p-2" src={message.imageURL} />
               </div>
               <p>{message.text}</p>
             </div>
@@ -188,6 +207,9 @@ const Chat = (props: Props) => {
               <button
                 onClick={async () => {
                   await deleteDoc(doc(db, "messages", message.id));
+                  if (message.imageName) {
+                    deleteImage(imageName);
+                  }
                 }}
               >
                 <svg
