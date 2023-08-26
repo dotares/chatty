@@ -96,10 +96,10 @@ const Chat = (props: Props) => {
 
     deleteObject(storageRef)
       .then(() => {
-        console.log(`File ${storageRef}`);
+        console.log(`File ${storageRef} has been deleted from Firebase`);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(`Couldn't delete file due to: ${error}`);
       });
   };
 
