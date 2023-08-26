@@ -42,6 +42,7 @@ const Chat = (props: Props) => {
   const [selectedImage, setSelectedImage] = useState<null | Blob>(null);
   const [imageURL, setImageURL] = useState<string>("");
   const [imageName, setImageName] = useState<string>("");
+  const [hasNotUploaded, setHasNotUploaded] = useState<boolean>(true);
   const messagesRef = collection(db, "messages");
   const chatRef = useRef<null | HTMLDivElement>(null);
   let progress: number = 0;
@@ -51,6 +52,7 @@ const Chat = (props: Props) => {
     setSelectedImage(null);
     setImageURL("");
     setNewMessage("");
+    setHasNotUploaded(true);
   };
 
   useEffect(() => {
@@ -122,6 +124,7 @@ const Chat = (props: Props) => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageURL(downloadURL);
           setImageName(selectedImage.name);
+          setHasNotUploaded(false);
           console.log(`Download link available at: ${downloadURL}`);
         });
       }
@@ -278,7 +281,7 @@ const Chat = (props: Props) => {
             value={newMessage}
             type="text"
           />
-          <button className="px-4" type="submit">
+          <button className="px-4" type="submit" disabled={hasNotUploaded}>
             <svg
               className="transition fill-[#FAF0E6] text-2xl hover:scale-150"
               xmlns="http://www.w3.org/2000/svg"
