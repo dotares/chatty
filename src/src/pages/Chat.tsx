@@ -50,6 +50,8 @@ const Chat = (props: Props) => {
   const clearStates = () => {
     progress = 0;
     setSelectedImage(null);
+    setImageURL("");
+    setImageName("");
     setNewMessage("");
     setToggleDisable(true);
   };
@@ -199,7 +201,8 @@ const Chat = (props: Props) => {
               <button
                 onClick={async () => {
                   await deleteDoc(doc(db, "messages", message.id));
-                  await deleteObject(ref(storage, message.imageNameMessage));
+                  if (message.imageNameMessage)
+                    await deleteObject(ref(storage, message.imageNameMessage));
                 }}
               >
                 <svg
