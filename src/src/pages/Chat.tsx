@@ -243,7 +243,7 @@ const Chat = (props: Props) => {
         <div className="font-robotomono py-6 bg-[#5C5470] p-4 pl-6 mt-6 flex justify-center">
           <label
             id="myFile-label"
-            className="bg-[#B9B4C7] p-2 rounded-full mr-6 drop-shadow-xl"
+            className="bg-[#B9B4C7] p-2 transition hover:scale-110 rounded-full mr-6 drop-shadow-xl"
             htmlFor="myFile"
           >
             <svg
