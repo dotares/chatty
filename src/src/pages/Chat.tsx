@@ -11,7 +11,12 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { auth, db, storage } from "../firebase-config";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 import SignOut from "../components/SignOut";
 
 interface Props {
@@ -27,7 +32,7 @@ interface Message {
   room: string;
   profilePhoto: string;
   imageURL: string;
-  imageName: string;
+  imageNameMessage: string;
   createdAt: number;
 }
 
@@ -36,6 +41,7 @@ const Chat = (props: Props) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedImage, setSelectedImage] = useState<null | Blob>(null);
   const [imageURL, setImageURL] = useState<string>("");
+  const [imageName, setImageName] = useState<string>("");
   const [toggleDisable, setToggleDisable] = useState<boolean>(true);
   const messagesRef = collection(db, "messages");
   const chatRef = useRef<null | HTMLDivElement>(null);
@@ -104,6 +110,7 @@ const Chat = (props: Props) => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageURL(downloadURL);
+          setImageName(uploadTask.snapshot.ref.name);
           setToggleDisable(false);
           console.log(`Download link available at: ${downloadURL}`);
         });
@@ -120,6 +127,7 @@ const Chat = (props: Props) => {
         createdAt: serverTimestamp(),
         profilePhoto: auth.currentUser.photoURL,
         imageURL,
+        imageNameMessage: imageName,
         user: auth.currentUser.displayName,
         room: props.room,
       });
@@ -191,6 +199,7 @@ const Chat = (props: Props) => {
               <button
                 onClick={async () => {
                   await deleteDoc(doc(db, "messages", message.id));
+                  await deleteObject(ref(storage, message.imageNameMessage));
                 }}
               >
                 <svg
