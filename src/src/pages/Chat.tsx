@@ -11,12 +11,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { auth, db, storage } from "../firebase-config";
-import {
-  deleteObject,
-  getDownloadURL,
-  ref,
-  uploadBytesResumable,
-} from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import SignOut from "../components/SignOut";
 
 interface Props {
