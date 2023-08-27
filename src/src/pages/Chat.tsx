@@ -41,7 +41,6 @@ const Chat = (props: Props) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedImage, setSelectedImage] = useState<null | Blob>(null);
   const [imageURL, setImageURL] = useState<string>("");
-  const [imageName, setImageName] = useState<string>("");
   const [toggleDisable, setToggleDisable] = useState<boolean>(true);
   const messagesRef = collection(db, "messages");
   const chatRef = useRef<null | HTMLDivElement>(null);
@@ -50,7 +49,6 @@ const Chat = (props: Props) => {
   const clearStates = () => {
     progress = 0;
     setSelectedImage(null);
-    setImageURL("");
     setNewMessage("");
     setToggleDisable(true);
   };
@@ -93,18 +91,6 @@ const Chat = (props: Props) => {
     return `on ${day} @ ${time}`;
   };
 
-  const deleteImage = (imageName: string) => {
-    const storageRef = ref(storage, imageName);
-
-    deleteObject(storageRef)
-      .then(() => {
-        console.log(`File ${storageRef} has been deleted from Firebase`);
-      })
-      .catch((error) => {
-        console.log(`Couldn't delete file due to: ${error}`);
-      });
-  };
-
   const uploadImage = (selectedImage: Blob) => {
     const storageRef = ref(storage, selectedImage.name);
     const uploadTask = uploadBytesResumable(storageRef, selectedImage);
@@ -123,7 +109,6 @@ const Chat = (props: Props) => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageURL(downloadURL);
-          setImageName(selectedImage.name);
           setToggleDisable(false);
           console.log(`Download link available at: ${downloadURL}`);
         });
@@ -140,12 +125,11 @@ const Chat = (props: Props) => {
         createdAt: serverTimestamp(),
         profilePhoto: auth.currentUser.photoURL,
         imageURL,
-        imageName,
         user: auth.currentUser.displayName,
         room: props.room,
       });
-      clearStates();
     }
+    clearStates();
   };
 
   useEffect(() => {
@@ -212,9 +196,6 @@ const Chat = (props: Props) => {
               <button
                 onClick={async () => {
                   await deleteDoc(doc(db, "messages", message.id));
-                  if (message.imageName) {
-                    deleteImage(imageName);
-                  }
                 }}
               >
                 <svg
