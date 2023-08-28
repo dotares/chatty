@@ -1,5 +1,5 @@
 import React from "react";
-import { SetRoomProps } from "../../Types/setRoomProps";
+import { SetRoomProps } from "../../types/setRoomProps";
 
 interface CustomServerInputProps extends SetRoomProps {
   roomInputRef: React.RefObject<HTMLInputElement>;

@@ -1,11 +1,10 @@
-interface Props {
-  signUserOut: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-}
+import React from "react";
+import { SignUserOutProps } from "../../types/signUserOutProps";
 
-const SignOut = (props: Props) => {
+const SignOut: React.FC<SignUserOutProps> = ({ signUserOut }) => {
   return (
     <div>
-      <button onClick={props.signUserOut}>
+      <button onClick={signUserOut}>
         <svg
           className="fill-[#FAF0E6] transition hover:scale-150 text-2xl"
           xmlns="http://www.w3.org/2000/svg"

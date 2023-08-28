@@ -17,12 +17,12 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import SignOut from "../components/NavbarSection/SignOut";
+import Navbar from "../components/NavbarSection/Navbar";
+import { SignUserOutProps } from "../types/signUserOutProps";
 
-interface Props {
+export interface ChatProps extends SignUserOutProps {
   room: string;
   resetRoom: Function;
-  signUserOut: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 interface Message {
@@ -36,7 +36,7 @@ interface Message {
   createdAt: number;
 }
 
-const Chat = (props: Props) => {
+const Chat: React.FC<ChatProps> = ({ room, resetRoom, signUserOut }) => {
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedImage, setSelectedImage] = useState<null | Blob>(null);
@@ -65,7 +65,7 @@ const Chat = (props: Props) => {
   useEffect(() => {
     const queryMessages = query(
       messagesRef,
-      where("room", "==", props.room),
+      where("room", "==", room),
       orderBy("createdAt")
     );
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
@@ -131,7 +131,7 @@ const Chat = (props: Props) => {
         imageURL,
         imageNameMessage: imageName,
         user: auth.currentUser.displayName,
-        room: props.room,
+        room,
       });
     }
     clearStates();
@@ -145,27 +145,7 @@ const Chat = (props: Props) => {
 
   return (
     <div>
-      {/* Nav Section */}
-      <div className="flex flex-row w-full bg-[#352F44] p-8 top-0 z-10 fixed justify-between items-center">
-        <div>
-          <button onClick={() => props.resetRoom()}>
-            <svg
-              className="fill-[#FAF0E6] text-2xl hover:scale-150 transition"
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 384 512"
-            >
-              <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
-            </svg>
-          </button>
-        </div>
-        <div className="font-pacifico text-[#FAF0E6]">
-          <h1 className="text-4xl text-center">{props.room}</h1>
-        </div>
-        <div>
-          <SignOut signUserOut={props.signUserOut} />
-        </div>
-      </div>
+      <Navbar room={room} resetRoom={resetRoom} signUserOut={signUserOut} />
       {/* Messages Section */}
       <div className="overflow-y-auto mt-[7em] mb-[6em]">
         {messages.map((message: Message) => (
@@ -285,7 +265,7 @@ const Chat = (props: Props) => {
           {/* Text Input  */}
           <input
             className="w-full bg-[#5C5470] text-[#FAF0E6] placeholder:font-robotomono placeholder:text-[#B9B4C7] outline-0 placeholder:text-sm"
-            placeholder={`Message ${props.room}`}
+            placeholder={`Message ${room}`}
             onChange={(e) => setNewMessage(e.target.value)}
             value={newMessage}
             type="text"
