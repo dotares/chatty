@@ -31,6 +31,7 @@ const SignUp = (props: Props) => {
               A bloat-free chat application
             </p>
           </div>
+          {/* Authentication Section */}
           <div>
             <button
               className="group transition hover:scale-110 rounded-xl w-2/3 p-4 text-md bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
