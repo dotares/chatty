@@ -145,6 +145,7 @@ const Chat = (props: Props) => {
 
   return (
     <div>
+      {/* Nav Section */}
       <div className="flex flex-row w-full bg-[#352F44] p-8 top-0 z-10 fixed justify-between items-center">
         <div>
           <button onClick={() => props.resetRoom()}>
@@ -165,8 +166,10 @@ const Chat = (props: Props) => {
           <SignOut signUserOut={props.signUserOut} />
         </div>
       </div>
+      {/* Messages Section */}
       <div className="overflow-y-auto mt-[7em] mb-[6em]">
         {messages.map((message: Message) => (
+          // Message
           <div
             className="text-[#FAF0E6] justify-center group font-rubik flex text-left md:mx-[5%] lg:mx-[10%] xl:mx-[20%] p-4"
             key={message.id}
@@ -191,6 +194,7 @@ const Chat = (props: Props) => {
               </div>
               <p>{message.text}</p>
             </div>
+            {/* Delete Button */}
             <div
               className={`invisible ${
                 message.user === auth.currentUser?.displayName
@@ -219,7 +223,9 @@ const Chat = (props: Props) => {
         ))}
         <div ref={chatRef} />
       </div>
+      {/* Chat Input Section */}
       <form className="w-full bottom-0 fixed" onSubmit={handleSubmit}>
+        {/* Image Preview Section*/}
         <div>
           {selectedImage && (
             <div className="bg-[#5C5470] w-fit relative rounded-xl p-6 m-8 drop-shadow-xl">
@@ -250,7 +256,9 @@ const Chat = (props: Props) => {
             </div>
           )}
         </div>
+        {/* Text and Image Input Section */}
         <div className="font-robotomono py-6 bg-[#5C5470] p-4 pl-6 mt-6 flex justify-center">
+          {/* Image Input */}
           <label
             id="myFile-label"
             className="bg-[#B9B4C7] p-2 transition hover:scale-110 rounded-full mr-6 drop-shadow-xl"
@@ -274,6 +282,7 @@ const Chat = (props: Props) => {
               setSelectedImage(e.target.files[0]);
             }}
           />
+          {/* Text Input  */}
           <input
             className="w-full bg-[#5C5470] text-[#FAF0E6] placeholder:font-robotomono placeholder:text-[#B9B4C7] outline-0 placeholder:text-sm"
             placeholder={`Message ${props.room}`}
