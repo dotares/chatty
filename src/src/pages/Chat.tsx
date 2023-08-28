@@ -135,10 +135,8 @@ const Chat: React.FC<ChatProps> = ({ room, resetRoom, signUserOut }) => {
   return (
     <div>
       <Navbar room={room} resetRoom={resetRoom} signUserOut={signUserOut} />
-      {/* Messages Section */}
       <div className="overflow-y-auto mt-[7em] mb-[6em]">
         {messages.map((message) => (
-          // Message
           <MessageComponent message={message} getTime={getTime} />
         ))}
         <div ref={chatRef} />
