@@ -7,6 +7,7 @@ import SignOut from "../components/SignOut";
 import JoinedServers from "../components/JoinedServers";
 import CustomServerInput from "../components/CustomServerInput";
 import Cookies from "universal-cookie";
+import MinimalProfileInfo from "../components/MinimalProfileInfo";
 
 const cookies = new Cookies();
 
@@ -58,21 +59,12 @@ const Home = () => {
         </div>
       ) : (
         <div>
-          {/* Navbar Section */}
           <div className="fixed w-full">
             <div className="flex justify-between items-center m-8">
-              {/* Profile Info Section */}
-              <div className="flex items-center space-x-4 text-lg font-rubik text-[#FAF0E6]">
-                <div>
-                  <img
-                    className="h-10 rounded-full drop-shadow-xl"
-                    src={userPhoto}
-                  />
-                </div>
-                <div className="font-bold drop-shadow-xl">
-                  {userDisplayName}
-                </div>
-              </div>
+              <MinimalProfileInfo
+                userPhoto={userPhoto}
+                userDisplayName={userDisplayName}
+              />
               <div className="">
                 <SignOut signUserOut={signUserOut} />
               </div>
