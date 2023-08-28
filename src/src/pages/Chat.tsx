@@ -223,7 +223,17 @@ const Chat = (props: Props) => {
         <div>
           {selectedImage && (
             <div className="bg-[#5C5470] w-fit relative rounded-xl p-6 m-8 drop-shadow-xl">
-              <div className="group" onClick={() => setSelectedImage(null)}>
+              <div
+                className="group"
+                onClick={async () => {
+                  if (imageURL) {
+                    await deleteObject(ref(storage, imageName));
+                    setSelectedImage(null);
+                    setImageName("");
+                    setImageURL("");
+                  }
+                }}
+              >
                 <img
                   className="h-80 group-hover:brightness-50 transition rounded-xl"
                   src={URL.createObjectURL(selectedImage)}
