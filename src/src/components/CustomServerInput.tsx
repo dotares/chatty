@@ -1,7 +1,7 @@
 import React from "react";
-import { JoinedServersProps } from "./JoinedServers";
+import { SetRoomProps } from "../Types/setRoomProps";
 
-interface CustomServerInputProps extends JoinedServersProps {
+interface CustomServerInputProps extends SetRoomProps {
   roomInputRef: React.RefObject<HTMLInputElement>;
 }
 

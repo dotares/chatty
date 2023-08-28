@@ -1,8 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
+import { SetRoomProps } from "../Types/setRoomProps";
 
-export interface JoinedServersProps {
-  setRoom: Dispatch<SetStateAction<string | null>>;
-}
+interface JoinedServersProps extends SetRoomProps {}
 
 const JoinedServers: React.FC<JoinedServersProps> = ({ setRoom }) => {
   return (
