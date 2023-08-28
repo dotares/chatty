@@ -56,8 +56,10 @@ const Home = () => {
         </div>
       ) : (
         <div>
+          {/* Navbar Section */}
           <div className="fixed w-full">
             <div className="flex justify-between items-center m-8">
+              {/* Profile Info Section */}
               <div className="flex items-center space-x-4 text-lg font-rubik text-[#FAF0E6]">
                 <div>
                   <img
@@ -75,8 +77,10 @@ const Home = () => {
             </div>
           </div>
           <div className="flex h-screen w-full">
+            {/* Server Selection Section  */}
             <div className="m-auto text-center">
               <div>
+                {/* Joined Servers Section */}
                 <div className="gap-12 flex sm:flex-row flex-col">
                   <div className="flex flex-row sm:flex-col items-center">
                     <button
@@ -134,6 +138,7 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="font-robotomono mt-20 bg-[#5C5470] rounded-full p-4 pl-6 flex justify-center drop-shadow-xl">
+                  {/* Custom Server Input Section */}
                   <input
                     className="w-full bg-[#5C5470] text-[#FAF0E6] placeholder:font-robotomono placeholder:text-[#B9B4C7] outline-0 placeholder:text-sm"
                     placeholder="Enter room name ..."
