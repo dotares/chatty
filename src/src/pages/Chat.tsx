@@ -17,7 +17,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import SignOut from "../components/SignOut";
+import SignOut from "../components/NavbarSection/SignOut";
 
 interface Props {
   room: string;

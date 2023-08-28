@@ -1,4 +1,4 @@
-import { SetRoomProps } from "../Types/setRoomProps";
+import { SetRoomProps } from "../../Types/setRoomProps";
 
 interface JoinedServersProps extends SetRoomProps {}
 

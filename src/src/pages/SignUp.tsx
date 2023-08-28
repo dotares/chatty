@@ -2,7 +2,7 @@ import { auth, provider } from "../firebase-config";
 import { signInWithPopup } from "firebase/auth";
 import Cookies from "universal-cookie";
 import Footer from "../components/Footer";
-import Authentication from "../components/Authentication";
+import Authentication from "../components/SignUpSection/Authentication";
 
 const cookies = new Cookies();
 
@@ -32,7 +32,6 @@ const SignUp = (props: Props) => {
               A bloat-free chat application
             </p>
           </div>
-          {/* Authentication Section */}
           <Authentication signInWithGoogle={signInWithGoogle} />
         </div>
       </div>
