@@ -19,6 +19,8 @@ import Navbar from "../components/NavbarSection/Navbar";
 import { SignUserOutProps } from "../types/signUserOutProps";
 import { Message } from "../types/Message";
 import MessageComponent from "../components/ChatSection/MessageComponent";
+import FilePreview from "../components/FileInputSection/FilePreview";
+import FileInput from "../components/FileInputSection/FileInput";
 
 export interface ChatProps extends SignUserOutProps {
   room: string;
@@ -144,62 +146,18 @@ const Chat: React.FC<ChatProps> = ({ room, resetRoom, signUserOut }) => {
       {/* Chat Input Section */}
       <form className="w-full bottom-0 fixed" onSubmit={handleSubmit}>
         {/* Image Preview Section*/}
-        <div>
-          {selectedImage && (
-            <div className="bg-[#5C5470] w-fit relative rounded-xl p-6 m-8 drop-shadow-xl">
-              <div
-                className="group"
-                onClick={async () => {
-                  if (imageURL) {
-                    await deleteObject(ref(storage, imageName));
-                    setSelectedImage(null);
-                    setImageName("");
-                    setImageURL("");
-                  }
-                }}
-              >
-                <img
-                  className="h-80 group-hover:brightness-50 transition rounded-xl"
-                  src={URL.createObjectURL(selectedImage)}
-                />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="transition fill-[#FAF0E6] absolute group-hover:visible invisible top-1/2 left-1/2"
-                  height="1em"
-                  viewBox="0 0 448 512"
-                >
-                  <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-                </svg>
-              </div>
-            </div>
-          )}
-        </div>
+        <FilePreview
+          selectedImage={selectedImage}
+          imageName={imageName}
+          imageURL={imageURL}
+          setSelectedImage={setSelectedImage}
+          setImageName={setImageName}
+          setImageURL={setImageURL}
+        />
         {/* Text and Image Input Section */}
         <div className="font-robotomono py-6 bg-[#5C5470] p-4 pl-6 mt-6 flex justify-center">
           {/* Image Input */}
-          <label
-            id="myFile-label"
-            className="bg-[#B9B4C7] p-2 transition hover:scale-110 rounded-full mr-6 drop-shadow-xl"
-            htmlFor="myFile"
-          >
-            <svg
-              className="fill-[#352F44]"
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 448 512"
-            >
-              <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-            </svg>
-          </label>
-          <input
-            id="myFile"
-            className="hidden"
-            name="myFile"
-            type="file"
-            onChange={(e: any) => {
-              setSelectedImage(e.target.files[0]);
-            }}
-          />
+          <FileInput setSelectedImage={setSelectedImage} />
           {/* Text Input  */}
           <input
             className="w-full bg-[#5C5470] text-[#FAF0E6] placeholder:font-robotomono placeholder:text-[#B9B4C7] outline-0 placeholder:text-sm"
