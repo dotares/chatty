@@ -135,7 +135,11 @@ const Chat: React.FC<ChatProps> = ({ room, resetRoom, signUserOut }) => {
       <Navbar room={room} resetRoom={resetRoom} signUserOut={signUserOut} />
       <div className="overflow-y-auto mt-[7em] mb-[6em]">
         {messages.map((message) => (
-          <MessageComponent message={message} getTime={getTime} />
+          <MessageComponent
+            key={crypto.randomUUID()}
+            message={message}
+            getTime={getTime}
+          />
         ))}
         <div ref={chatRef} />
       </div>
