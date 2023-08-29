@@ -8,15 +8,15 @@ import {
   serverTimestamp,
   orderBy,
 } from "firebase/firestore";
-import { auth, db, storage } from "../firebase-config";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import Navbar from "../components/NavbarSection/Navbar";
-import { SignUserOutProps } from "../types/signUserOutProps";
-import { Message } from "../types/Message";
+import { auth, db, storage } from "../firebase-config";
 import MessageComponent from "../components/ChatSection/MessageComponent";
+import Navbar from "../components/NavbarSection/Navbar";
 import FilePreview from "../components/FileInputSection/FilePreview";
 import FileInput from "../components/FileInputSection/FileInput";
 import TextInput from "../components/ChatSection/TextInput";
+import { SignUserOutProps } from "../types/signUserOutProps";
+import { Message } from "../types/Message";
 
 export interface ChatProps extends SignUserOutProps {
   room: string;

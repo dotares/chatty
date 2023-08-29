@@ -1,8 +1,8 @@
 import React from "react";
 import { doc, deleteDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase-config";
-import { Message } from "../../types/Message";
 import { deleteObject, ref } from "firebase/storage";
+import { Message } from "../../types/Message";
 
 interface MessageProps {
   message: Message;
