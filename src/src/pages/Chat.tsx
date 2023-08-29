@@ -9,12 +9,7 @@ import {
   orderBy,
 } from "firebase/firestore";
 import { auth, db, storage } from "../firebase-config";
-import {
-  deleteObject,
-  getDownloadURL,
-  ref,
-  uploadBytesResumable,
-} from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import Navbar from "../components/NavbarSection/Navbar";
 import { SignUserOutProps } from "../types/signUserOutProps";
 import { Message } from "../types/Message";
