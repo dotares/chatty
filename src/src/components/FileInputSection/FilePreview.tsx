@@ -2,9 +2,9 @@ import { deleteObject, ref } from "firebase/storage";
 import { storage } from "../../firebase-config";
 import React from "react";
 import { setSelectedImageProps } from "../../types/setSelectedImageProps";
+import { selectedImage } from "../../types/seletedImage";
 
-interface FilePreviewProps extends setSelectedImageProps {
-  selectedImage: Blob | null;
+interface FilePreviewProps extends setSelectedImageProps, selectedImage {
   imageURL: string;
   setImageName: Function;
   setImageURL: Function;
