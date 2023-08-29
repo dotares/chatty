@@ -1,5 +1,5 @@
 import React from "react";
-import { setSelectedImageProps } from "../../types/setSelectedImageProps";
+import { setSelectedImageProps } from "../types/setSelectedImageProps";
 
 interface FileInputProps extends setSelectedImageProps {}
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { selectedImage } from "../../types/seletedImage";
+import { selectedImage } from "../types/seletedImage";
 
 interface TextInputProps extends selectedImage {
   room: string;

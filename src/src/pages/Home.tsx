@@ -3,11 +3,11 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
 import SignUp from "./SignUp";
 import Chat from "./Chat";
-import SignOut from "../components/NavbarSection/SignOut";
-import JoinedServers from "../components/ServersSection/JoinedServers";
-import CustomServerInput from "../components/ServersSection/CustomServerInput";
+import SignOut from "../components/SignOut";
+import JoinedServers from "../components/JoinedServers";
+import CustomServerInput from "../components/CustomServerInput";
 import Cookies from "universal-cookie";
-import MinimalProfileInfo from "../components/NavbarSection/MinimalProfileInfo";
+import MinimalProfileInfo from "../components/MinimalProfileInfo";
 
 const cookies = new Cookies();
 

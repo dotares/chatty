@@ -10,11 +10,11 @@ import {
 } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { auth, db, storage } from "../firebase-config";
-import MessageComponent from "../components/ChatSection/MessageComponent";
-import Navbar from "../components/NavbarSection/Navbar";
-import FilePreview from "../components/FileInputSection/FilePreview";
-import FileInput from "../components/FileInputSection/FileInput";
-import TextInput from "../components/ChatSection/TextInput";
+import MessageComponent from "../components/MessageComponent";
+import Navbar from "../components/Navbar";
+import FilePreview from "../components/FilePreview";
+import FileInput from "../components/FileInput";
+import TextInput from "../components/TextInput";
 import { SignUserOutProps } from "../types/signUserOutProps";
 import { Message } from "../types/Message";
 
