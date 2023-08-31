@@ -30,8 +30,10 @@ const Chat: React.FC<ChatProps> = ({ room, resetRoom, signUserOut }) => {
   const [imageURL, setImageURL] = useState<string>("");
   const [imageName, setImageName] = useState<string>("");
   const [toggleDisable, setToggleDisable] = useState<boolean>(true);
+
   const messagesRef = collection(db, "messages");
   const chatRef = useRef<null | HTMLDivElement>(null);
+
   let progress: number = 0;
 
   const clearStates = () => {
