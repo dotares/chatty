@@ -1,15 +1,23 @@
 import React from "react";
-import { setOpenModal } from "../types/setOpenModal";
+import { SetRoomProps } from "../types/setRoomProps";
 
-interface AddAServerProps extends setOpenModal {}
+interface CreateNewServerFormProps extends SetRoomProps {
+  roomInputRef: React.RefObject<HTMLInputElement>;
+}
 
-const AddAServer: React.FC<AddAServerProps> = ({ setOpenModal }) => {
+const CreateNewServerForm: React.FC<CreateNewServerFormProps> = ({
+  setRoom,
+  roomInputRef,
+}) => {
   return (
-    <div className="flex flex-row sm:flex-col items-center">
+    <div>
+      <label>Enter server name</label>
+      <input type="text" ref={roomInputRef} />
       <button
-        className="group transition flex justify-center items-center sm:my-4 mx-6 hover:scale-110 h-[2em] w-[2em] rounded-full p-4 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"
         onClick={() => {
-          setOpenModal(true);
+          if (roomInputRef.current) {
+            setRoom(roomInputRef.current.value);
+          }
         }}
       >
         <svg
@@ -21,9 +29,8 @@ const AddAServer: React.FC<AddAServerProps> = ({ setOpenModal }) => {
           <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
         </svg>
       </button>
-      <p className="font-robotomono text-[#B9B4C7]">Add a server</p>
     </div>
   );
 };
 
-export default AddAServer;
+export default CreateNewServerForm;

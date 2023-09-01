@@ -1,12 +1,28 @@
+import React, { useState } from "react";
 import { SetRoomProps } from "../types/setRoomProps";
 import AddAServer from "./AddAServer";
+import AddServerModal from "./AddServerModal";
 
-interface JoinedServersProps extends SetRoomProps {}
+interface JoinedServersProps extends SetRoomProps {
+  roomInputRef: React.RefObject<HTMLInputElement>;
+}
 
-const JoinedServers: React.FC<JoinedServersProps> = ({ setRoom }) => {
+const JoinedServers: React.FC<JoinedServersProps> = ({
+  setRoom,
+  roomInputRef,
+}) => {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div className="gap-12 flex sm:flex-row flex-col justify-center">
-      <AddAServer />
+      {openModal ? (
+        <AddServerModal
+          roomInputRef={roomInputRef}
+          setRoom={setRoom}
+          setOpenModal={setOpenModal}
+        />
+      ) : (
+        <AddAServer setOpenModal={setOpenModal} />
+      )}
       {/* <div className="flex flex-row sm:flex-col items-center">
         <button
           className="group transition flex justify-center items-center sm:my-4 mx-6 hover:scale-110 h-[2em] w-[2em] rounded-full p-4 text-4xl bg-[#5C5470] hover:bg-[#B9B4C7] drop-shadow-xl hover:drop-shadow-none"

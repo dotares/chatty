@@ -5,7 +5,7 @@ import SignUp from "./SignUp";
 import Chat from "./Chat";
 import SignOut from "../components/SignOut";
 import JoinedServers from "../components/JoinedServers";
-import CustomServerInput from "../components/CustomServerInput";
+// import CustomServerInput from "../components/CustomServerInput";
 import Cookies from "universal-cookie";
 import MinimalProfileInfo from "../components/MinimalProfileInfo";
 
@@ -73,7 +73,7 @@ const Home = () => {
           <div className="flex h-screen w-full">
             <div className="m-auto text-center">
               <div className="flex flex-col justify-center items-center overflow-x-auto">
-                <JoinedServers setRoom={setRoom} />
+                <JoinedServers roomInputRef={roomInputRef} setRoom={setRoom} />
                 {/* <CustomServerInput
                   roomInputRef={roomInputRef}
                   setRoom={setRoom}
