@@ -74,10 +74,6 @@ const Home = () => {
             <div className="m-auto text-center">
               <div className="flex flex-col justify-center items-center overflow-x-auto">
                 <JoinedServers roomInputRef={roomInputRef} setRoom={setRoom} />
-                {/* <CustomServerInput
-                  roomInputRef={roomInputRef}
-                  setRoom={setRoom}
-                /> */}
               </div>
             </div>
           </div>
