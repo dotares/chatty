@@ -72,12 +72,12 @@ const Home = () => {
           </div>
           <div className="flex h-screen w-full">
             <div className="m-auto text-center">
-              <div>
+              <div className="flex flex-col justify-center items-center overflow-x-auto">
                 <JoinedServers setRoom={setRoom} />
-                <CustomServerInput
+                {/* <CustomServerInput
                   roomInputRef={roomInputRef}
                   setRoom={setRoom}
-                />
+                /> */}
               </div>
             </div>
           </div>
