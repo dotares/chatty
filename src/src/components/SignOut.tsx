@@ -1,5 +1,5 @@
 import React from "react";
-import { SignUserOutProps } from "../../types/signUserOutProps";
+import { SignUserOutProps } from "../types/SignUserOutProps";
 
 const SignOut: React.FC<SignUserOutProps> = ({ signUserOut }) => {
   return (

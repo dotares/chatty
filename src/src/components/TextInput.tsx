@@ -1,8 +1,9 @@
 import React from "react";
 import { selectedImage } from "../types/seletedImage";
+import { Room } from "../types/Room";
 
-interface TextInputProps extends selectedImage {
-  room: string;
+interface TextInputProps extends selectedImage, Room {
+  room: Room;
   setNewMessage: Function;
   newMessage: string;
   toggleDisable: boolean;
@@ -19,7 +20,7 @@ const TextInput: React.FC<TextInputProps> = ({
     <>
       <input
         className="w-full bg-[#5C5470] text-[#FAF0E6] placeholder:font-robotomono placeholder:text-[#B9B4C7] outline-0 placeholder:text-sm"
-        placeholder={`Message ${room}`}
+        placeholder={`Message ${room.name}`}
         onChange={(e) => setNewMessage(e.target.value)}
         value={newMessage}
         type="text"

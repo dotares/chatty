@@ -16,7 +16,10 @@ const CreateNewServerForm: React.FC<CreateNewServerFormProps> = ({
       <button
         onClick={() => {
           if (roomInputRef.current) {
-            setRoom(roomInputRef.current.value);
+            setRoom({
+              name: roomInputRef.current.value,
+              code: crypto.randomUUID(),
+            });
           }
         }}
       >

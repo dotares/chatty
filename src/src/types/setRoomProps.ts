@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
 
 export interface SetRoomProps {
-  setRoom: Dispatch<SetStateAction<string | null>>;
+  setRoom: Dispatch<SetStateAction<object | null>>;
 }

@@ -13,7 +13,7 @@ const cookies = new Cookies();
 
 const Home = () => {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
-  const [room, setRoom] = useState<string | null>(null);
+  const [room, setRoom] = useState<object | null>(null);
   const [userPhoto, setUserPhoto] = useState<string>("");
   const [userDisplayName, setUserDisplayName] = useState<string | null>(null);
   const roomInputRef = useRef<HTMLInputElement>(null);

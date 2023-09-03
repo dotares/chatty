@@ -15,11 +15,12 @@ import Navbar from "../components/Navbar";
 import FilePreview from "../components/FilePreview";
 import FileInput from "../components/FileInput";
 import TextInput from "../components/TextInput";
-import { SignUserOutProps } from "../types/signUserOutProps";
+import { SignUserOutProps } from "../types/SignUserOutProps";
 import { Message } from "../types/Message";
+import { Room } from "../types/Room";
 
-export interface ChatProps extends SignUserOutProps {
-  room: string;
+export interface ChatProps extends SignUserOutProps, Room {
+  room: Room;
   resetRoom: Function;
 }
 
@@ -52,7 +53,7 @@ const Chat: React.FC<ChatProps> = ({ room, resetRoom, signUserOut }) => {
   useEffect(() => {
     const queryMessages = query(
       messagesRef,
-      where("room", "==", room),
+      where("room", "==", room.name),
       orderBy("createdAt")
     );
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
@@ -118,7 +119,7 @@ const Chat: React.FC<ChatProps> = ({ room, resetRoom, signUserOut }) => {
         imageURL,
         imageNameMessage: imageName,
         user: auth.currentUser.displayName,
-        room,
+        roomName: room.name,
       });
     }
     clearStates();
