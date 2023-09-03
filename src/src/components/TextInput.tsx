@@ -2,7 +2,7 @@ import React from "react";
 import { selectedImage } from "../types/seletedImage";
 import { Room } from "../types/Room";
 
-interface TextInputProps extends selectedImage, Room {
+interface TextInputProps extends selectedImage {
   room: Room;
   setNewMessage: Function;
   newMessage: string;

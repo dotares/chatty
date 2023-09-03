@@ -4,7 +4,7 @@ import ResetRoom from "./ResetRoom";
 import { Room } from "../types/Room";
 import { SignUserOutProps } from "../types/SignUserOutProps";
 
-interface NavbarProps extends Room, SignUserOutProps {
+interface NavbarProps extends SignUserOutProps {
   room: Room;
   resetRoom: Function;
 }

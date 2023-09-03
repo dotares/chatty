@@ -19,7 +19,7 @@ import { SignUserOutProps } from "../types/SignUserOutProps";
 import { Message } from "../types/Message";
 import { Room } from "../types/Room";
 
-export interface ChatProps extends SignUserOutProps, Room {
+interface ChatProps extends SignUserOutProps {
   room: Room;
   resetRoom: Function;
 }
@@ -53,7 +53,7 @@ const Chat: React.FC<ChatProps> = ({ room, resetRoom, signUserOut }) => {
   useEffect(() => {
     const queryMessages = query(
       messagesRef,
-      where("room", "==", room.name),
+      where("roomName", "==", room.name),
       orderBy("createdAt")
     );
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
