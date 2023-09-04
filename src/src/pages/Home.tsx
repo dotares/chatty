@@ -73,7 +73,6 @@ const Home = () => {
           <div className="flex h-screen w-full">
             <div className="m-auto text-center">
               <div>
-                <JoinedServers setRoom={setRoom} />
                 <CustomServerInput
                   roomInputRef={roomInputRef}
                   setRoom={setRoom}

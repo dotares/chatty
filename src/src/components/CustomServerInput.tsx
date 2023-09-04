@@ -11,8 +11,7 @@ const CustomServerInput: React.FC<CustomServerInputProps> = ({
 }) => {
   return (
     <div>
-      <div className="font-robotomono mt-20 bg-[#5C5470] rounded-full p-4 pl-6 flex justify-center drop-shadow-xl">
-        {/* Custom Server Input Section */}
+      <div className="font-robotomono bg-[#5C5470] rounded-full p-4 pl-6 flex justify-center drop-shadow-xl">
         <input
           className="w-full bg-[#5C5470] text-[#FAF0E6] placeholder:font-robotomono placeholder:text-[#B9B4C7] outline-0 placeholder:text-sm"
           placeholder="Enter room name ..."
