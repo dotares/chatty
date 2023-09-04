@@ -14,12 +14,15 @@ const SignUp = (props: Props) => {
   const signInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      cookies.set("auth-token", result.user.refreshToken);
+      const expires = new Date();
+      expires.setFullYear(expires.getFullYear() + 1);
+      cookies.set("auth-token", result.user.refreshToken, { expires });
       props.setIsAuth(true);
     } catch (err) {
       console.error(err);
     }
   };
+
   return (
     <div className="text-center">
       <div className="flex flex-col text-center h-screen">
