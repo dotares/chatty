@@ -1,5 +1,5 @@
 import React from "react";
-import { ChatProps } from "../../pages/Chat";
+import { ChatProps } from "../pages/Chat";
 import SignOut from "./SignOut";
 import ResetRoom from "./ResetRoom";
 

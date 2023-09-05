@@ -4,7 +4,6 @@ import { auth } from "../firebase-config";
 import SignUp from "./SignUp";
 import Chat from "./Chat";
 import SignOut from "../components/SignOut";
-import JoinedServers from "../components/JoinedServers";
 import CustomServerInput from "../components/CustomServerInput";
 import Cookies from "universal-cookie";
 import MinimalProfileInfo from "../components/MinimalProfileInfo";
