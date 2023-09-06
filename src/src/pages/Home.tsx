@@ -1,12 +1,12 @@
-import { useState, useRef, useEffect } from "react";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase-config";
-import SignUp from "./SignUp";
-import Chat from "./Chat";
-import SignOut from "../components/SignOut";
-import CustomServerInput from "../components/CustomServerInput";
+import { useEffect, useRef, useState } from "react";
 import Cookies from "universal-cookie";
+import CustomServerInput from "../components/CustomServerInput";
 import MinimalProfileInfo from "../components/MinimalProfileInfo";
+import SignOut from "../components/SignOut";
+import { auth } from "../firebase-config";
+import Chat from "./Chat";
+import SignUp from "./SignUp";
 
 const cookies = new Cookies();
 

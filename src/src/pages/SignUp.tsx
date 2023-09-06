@@ -1,8 +1,8 @@
-import { auth, provider } from "../firebase-config";
 import { signInWithPopup } from "firebase/auth";
 import Cookies from "universal-cookie";
-import Footer from "../components/Footer";
 import Authentication from "../components/Authentication";
+import Footer from "../components/Footer";
+import { auth, provider } from "../firebase-config";
 
 const cookies = new Cookies();
 

@@ -1,22 +1,22 @@
-import React, { useEffect, useState, useRef } from "react";
 import {
   addDoc,
   collection,
   onSnapshot,
-  query,
-  where,
-  serverTimestamp,
   orderBy,
+  query,
+  serverTimestamp,
+  where,
 } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { auth, db, storage } from "../firebase-config";
+import React, { useEffect, useRef, useState } from "react";
+import FileInput from "../components/FileInput";
+import FilePreview from "../components/FilePreview";
 import MessageComponent from "../components/MessageComponent";
 import Navbar from "../components/Navbar";
-import FilePreview from "../components/FilePreview";
-import FileInput from "../components/FileInput";
 import TextInput from "../components/TextInput";
-import { SignUserOutProps } from "../types/signUserOutProps";
+import { auth, db, storage } from "../firebase-config";
 import { Message } from "../types/Message";
+import { SignUserOutProps } from "../types/signUserOutProps";
 
 export interface ChatProps extends SignUserOutProps {
   room: string;
