@@ -55,7 +55,7 @@ const Chat: React.FC<ChatProps> = ({ room, resetRoom, signUserOut }) => {
     const queryMessages = query(
       messagesRef,
       where("room", "==", room),
-      orderBy("createdAt")
+      orderBy("createdAt"),
     );
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
       let messagesArray: Message[] = [];
@@ -91,7 +91,7 @@ const Chat: React.FC<ChatProps> = ({ room, resetRoom, signUserOut }) => {
       "state_changed",
       (snapshot) => {
         progress = Math.trunc(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
         );
         console.log(`${progress}% done`);
       },
@@ -105,7 +105,7 @@ const Chat: React.FC<ChatProps> = ({ room, resetRoom, signUserOut }) => {
           setToggleDisable(false);
           console.log(`Download link available at: ${downloadURL}`);
         });
-      }
+      },
     );
   };
 
